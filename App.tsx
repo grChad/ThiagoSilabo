@@ -1,118 +1,116 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import * as React from 'react'
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { useColorScheme } from 'react-native'
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './src/home'
+import DetailsScreen from './src/details'
+import SettingsScreen from './src/setting'
+import Aux from './src/aux'
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import Musica from './src/musica'
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+import { FrameImage } from './src/utils/user'
+import { BookIcon, PoemIcon, SettingsIcon } from './src/utils/IconsSvg'
+
+const Stack = createNativeStackNavigator()
+
+const Tab = createBottomTabNavigator()
+function TabsGroup() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: '#1da1f2',
+        tabBarInactiveTintColor: 'gray',
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerRight: () => <FrameImage size={40} />,
+          tabBarIcon: ({ color, focused }) => (
+            <BookIcon fill={color} isFocused={focused} />
+          ),
+        }}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+      <Tab.Screen
+        name="Details"
+        component={TopTabsGroup}
+        options={{
+          headerTitleAlign: 'center',
+          headerRight: () => <FrameImage size={40} />,
+          tabBarIcon: ({ color, focused }) => (
+            <PoemIcon fill={color} isFocused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={SettingsScreen}
+        options={{
+          headerTitleAlign: 'center',
+          tabBarIcon: ({ color, focused }) => (
+            <SettingsIcon fill={color} isFocused={focused} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  )
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const TopTabs = createMaterialTopTabNavigator()
+function TopTabsGroup() {
+  return (
+    <TopTabs.Navigator
+      screenOptions={{
+        tabBarLabelStyle: {
+          textTransform: 'capitalize',
+          fontWeight: 'bold',
+        },
+        tabBarIndicatorStyle: {
+          height: 5,
+          borderRadius: 5,
+          backgroundColor: '#1da1f2',
+        },
+      }}
+    >
+      <TopTabs.Screen name="mensajes" component={HomeScreen} />
+      <TopTabs.Screen name="poemas" component={DetailsScreen} />
+      <TopTabs.Screen name="musica" component={Musica} />
+    </TopTabs.Navigator>
+  )
+}
 
-export default App;
+function App() {
+  const theme = useColorScheme()
+
+  return (
+    <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="TabsGroup" component={TabsGroup} />
+        <Stack.Screen
+          name="ReadStory"
+          component={Aux}
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Stories',
+            headerTitleAlign: 'center',
+            headerShown: true,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default App
