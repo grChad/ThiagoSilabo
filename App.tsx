@@ -12,7 +12,8 @@ import { useColorScheme } from 'react-native'
 import HomeScreen from './src/home'
 import DetailsScreen from './src/details'
 import SettingsScreen from './src/setting'
-import Aux from './src/aux'
+import Books from './src/home/books'
+import { Phrases, FlagSpain } from './src/phrases/index'
 
 import Musica from './src/musica'
 
@@ -84,7 +85,7 @@ function TopTabsGroup() {
         },
       }}
     >
-      <TopTabs.Screen name="mensajes" component={HomeScreen} />
+      <TopTabs.Screen name="phrases" component={Phrases} />
       <TopTabs.Screen name="poemas" component={DetailsScreen} />
       <TopTabs.Screen name="musica" component={Musica} />
     </TopTabs.Navigator>
@@ -100,8 +101,9 @@ function App() {
         <Stack.Screen name="TabsGroup" component={TabsGroup} />
         <Stack.Screen
           name="ReadStory"
-          component={Aux}
+          component={Books}
           options={{
+            headerRight: () => <FlagSpain size={40} />,
             presentation: 'modal',
             headerTitle: 'Stories',
             headerTitleAlign: 'center',
