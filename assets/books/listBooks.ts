@@ -1,0 +1,51 @@
+export const ListBooks = [
+  {
+    id: 'story01',
+    story: 'El Gato con Botas',
+    textColor: '#ffffff',
+    background: '#fa6400',
+    srcImg: require('../../assets/images/story01/image01.webp'),
+  },
+  {
+    id: 'story02',
+    story: 'Los 3 Cerditos',
+    textColor: '#ffffff',
+    background: '#ea4c89',
+    srcImg: require('../../assets/images/story02/image01.webp'),
+  },
+  {
+    id: 'story03',
+    story: 'La Liebre y la Tortuga',
+    textColor: '#ffffff',
+    background: '#405cf5',
+    srcImg: require('../../assets/images/story03/image01.webp'),
+  },
+  {
+    id: 'story04',
+    story: 'Los Musicos de Bremen',
+    textColor: '#ffffff',
+    background: '#303446',
+    srcImg: require('../../assets/images/story04/image01.webp'),
+  },
+  {
+    id: 'story05',
+    story: 'El Árbol Mágico',
+    textColor: '#ffffff',
+    background: '#990000',
+    srcImg: require('../../assets/images/story05/image01.webp'),
+  },
+  {
+    id: 'story06',
+    story: 'Thiago y el Lobo',
+    textColor: '#ffffff',
+    background: 'purple',
+    srcImg: require('../../assets/images/story06/image01.webp'),
+  },
+  {
+    id: 'story07',
+    story: 'El Patito Feo',
+    textColor: '#ffffff',
+    background: '#09d',
+    srcImg: require('../../assets/images/story07/image01.webp'),
+  },
+]
