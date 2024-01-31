@@ -1,7 +1,7 @@
 import { ScrollView, useColorScheme, View, Text } from 'react-native'
 import { BoxImage, Paragraph } from './components'
 
-import Book from '../../../assets/books/laLiebreYLaTortuga.json'
+import Book from '../../../assets/books/la_liebre_y_la_tortuga.json'
 
 export default function Story01() {
   const theme = useColorScheme()
@@ -18,7 +18,7 @@ export default function Story01() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <DescriptionParagraph />
+      <PrologSpanish />
       <BoxImage url={urlImages.img01} init={true} />
       <Paragraph text={Book[0].es} theme={theme} />
       <Paragraph text={Book[1].es} theme={theme} />
@@ -42,7 +42,7 @@ export default function Story01() {
   )
 }
 
-const DescriptionParagraph = () => {
+const PrologSpanish = () => {
   return (
     <View className="m-8 mb-0">
       <Text className="text-xl font-[Sriracha] text-green-800 dark:text-green-600/80 mb-4">
@@ -67,6 +67,31 @@ const DescriptionParagraph = () => {
         </Text>
         . Como todas las fábulas, se trata de un cuento corto; vamos a leerlo
         juntos.
+      </Text>
+    </View>
+  )
+}
+
+const PrologEnglish = () => {
+  return (
+    <View className="m-8 mb-0">
+      <Text className="text-xl font-[Sriracha] text-green-800 dark:text-green-600/80 mb-4">
+        <Text className="text-red-500 dark:text-red-500/80">
+          The Hare and the Tortoise
+        </Text>{' '}
+        is one of Aesop's fables, or at least this famous Greek author has been attributed to it. It's one of the most well-known{' '}
+        <Text className="text-red-500 dark:text-red-500/80">
+          children's fables
+        </Text>{' '}
+        with an interesting moral lesson that we will analyze after reading it.
+      </Text>
+      <Text className="text-xl font-[Sriracha] text-green-800 dark:text-green-600/80">
+        Although, as we mentioned, the fable is attributed to{' '}
+        <Text className="text-red-500 dark:text-red-500/80">Aesop</Text>, it was later rewritten by other authors such as{' '}
+        <Text className="text-red-500 dark:text-red-500/80">
+          Jean de La Fontaine and Félix María Samaniego
+        </Text>
+        . Like all fables, it's a short story; let's read it together.
       </Text>
     </View>
   )

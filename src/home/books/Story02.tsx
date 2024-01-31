@@ -1,7 +1,7 @@
 import { ScrollView, useColorScheme } from 'react-native'
 import { BoxImage, Paragraph } from './components'
 
-import Book from '../../../assets/books/losTresCerditos.json'
+import Book from '../../../assets/books/los_tres_cerditos.json'
 
 export default function Story01() {
   const theme = useColorScheme()
